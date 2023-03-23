@@ -8,6 +8,8 @@ import UserController from './controllers/user/UserController';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 
 import uploadConfig from './config/multerConfig';
+import OrderController from './controllers/Order/OrderController';
+import OrderItemController from './controllers/OrderItem/OrderItemController';
 
 const routes = Router();
 
@@ -35,6 +37,21 @@ routes.post(
   ProductController.store
 );
 routes.get('/products', isAuthenticated, ProductController.index);
+routes.get(
+  '/productsByCategory/:category_id',
+  isAuthenticated,
+  ProductController.findByCategory
+);
 routes.put('product', isAuthenticated, ProductController.update);
+//ORDER ROUTES
+routes.get('/orders', isAuthenticated, OrderController.index);
+routes.post('/order', isAuthenticated, OrderController.store);
+routes.post('/order/sendOrder', isAuthenticated, OrderController.sendOrder);
+routes.put('/order', isAuthenticated, OrderController.update);
+routes.delete('/order/:id', isAuthenticated, OrderController.delete);
+//ORDERITEM ROUTES
+routes.post('/orderItem', isAuthenticated, OrderItemController.store);
+routes.get('/orderItem', isAuthenticated, OrderItemController.index);
+routes.delete('/orderItem/:id', isAuthenticated, OrderItemController.delete);
 
 export default routes;

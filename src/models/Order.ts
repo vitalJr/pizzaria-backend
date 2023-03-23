@@ -12,11 +12,13 @@ const OrderSchema = new Schema(
     },
     status: {
       type: Boolean,
-      default: true,
+      require: false,
+      default: false,
     },
     draft: {
       type: Boolean,
-      default: false,
+      require: false,
+      default: true,
     },
     name: {
       type: String,

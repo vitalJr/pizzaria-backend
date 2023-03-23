@@ -41,6 +41,13 @@ class ProductController {
 
     return res.status(200).json(product);
   }
+
+  async findByCategory(req: Request, res: Response) {
+    const { category_id } = req.params;
+
+    const products = await ProductService.listByCategory(category_id);
+    return res.status(200).json(products);
+  }
 }
 
 export default new ProductController();

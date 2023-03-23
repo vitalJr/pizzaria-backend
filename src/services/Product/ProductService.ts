@@ -65,6 +65,13 @@ class ProductService {
     await product.save();
     return product;
   }
+
+  async listByCategory(category_id: string) {
+    const products = await Product.find({ category: category_id }).populate(
+      'category'
+    );
+    return products;
+  }
 }
 
 export default new ProductService();
