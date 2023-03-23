@@ -24,6 +24,13 @@ class OrderItemController {
     const orderItem = await OrderItemService.remove(id);
     return res.status(200).json({ message: `Item ${orderItem._id} removed` });
   }
+
+  async getOrderDeatil(req: Request, res: Response) {
+    const { orderId } = req.body;
+
+    const orderDetail = await OrderItemService.findOrderDetail(orderId);
+    return res.status(200).json(orderDetail);
+  }
 }
 
 export default new OrderItemController();

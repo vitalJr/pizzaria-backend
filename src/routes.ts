@@ -45,12 +45,19 @@ routes.get(
 routes.put('product', isAuthenticated, ProductController.update);
 //ORDER ROUTES
 routes.get('/orders', isAuthenticated, OrderController.index);
+routes.get('/ordersFinished', isAuthenticated, OrderController.finishedOrders);
 routes.post('/order', isAuthenticated, OrderController.store);
 routes.post('/order/sendOrder', isAuthenticated, OrderController.sendOrder);
 routes.put('/order', isAuthenticated, OrderController.update);
 routes.delete('/order/:id', isAuthenticated, OrderController.delete);
 //ORDERITEM ROUTES
 routes.post('/orderItem', isAuthenticated, OrderItemController.store);
+routes.post(
+  '/orderDetail',
+  isAuthenticated,
+  OrderItemController.getOrderDeatil
+);
+routes.post('/order/close', isAuthenticated, OrderController.closingOrder);
 routes.get('/orderItem', isAuthenticated, OrderItemController.index);
 routes.delete('/orderItem/:id', isAuthenticated, OrderItemController.delete);
 

@@ -68,6 +68,26 @@ class OrderService {
     await order.save();
     return order;
   }
+
+  async listOrderFinished() {
+    const orders = await Order.find({ draft: false, status: false }).sort({
+      createdAt: -1,
+    });
+    return orders;
+  }
+
+  async closingOrder(orderId: string) {
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      throw new Error('Order not found.');
+    }
+
+    order.status = true;
+
+    await order.save();
+    return order;
+  }
 }
 
 export default new OrderService();

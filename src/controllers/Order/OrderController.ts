@@ -39,6 +39,18 @@ class OrderController {
       .status(200)
       .json({ message: `Order ${order._id} sent with success.` });
   }
+
+  async finishedOrders(req: Request, res: Response) {
+    const orders = await OrderService.listOrderFinished();
+    return res.status(200).json(orders);
+  }
+
+  async closingOrder(req: Request, res: Response) {
+    const { orderId } = req.body;
+
+    const order = await OrderService.closingOrder(orderId);
+    return res.status(200).json(order);
+  }
 }
 
 export default new OrderController();

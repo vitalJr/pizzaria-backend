@@ -35,6 +35,13 @@ class OrderItemService {
     await orderItem.deleteOne();
     return orderItem;
   }
+
+  async findOrderDetail(order_id: string) {
+    const orderDeatil = await OrderItem.find({ orderId: order_id })
+      .populate('orderId')
+      .populate('productId');
+    return orderDeatil;
+  }
 }
 
 export default new OrderItemService();
