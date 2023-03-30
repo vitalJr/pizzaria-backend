@@ -12,3 +12,25 @@
 <p"/orders" -> Lista com os registros das mesas que tem solicitações  </p>
 <p>"/ordersFinished" -> Lista com os pedidos finalizados  </p>
 <p>"/orderItem" -> lista com os items que estão registrados por mesas </p>
+
+<h3>POSTS</h3>
+<p>"/users" -> Registrar um novo usuario </p>
+<p>"/category" -> Registrar uma nova categoria </p>
+<p>"/product" -> registrar um novo produto  </p>
+<p>"/userDetail" -> Consultar um detalhe de uma dos usuarios  </p>
+<p"/order" -> Abrir um anova ordem de produto.  </p>
+<p>"/order/sendOrder" -> Finalizar o pedido e abrir uma nova ordem para cozinha  </p>
+<p>"/orderItem" -> Consultar uma ordem especifica </p>
+<p>"/orderDetail" ->COnsultar os detalhes de uma ordem especifica </p>
+<p>"/order/close" ->Fechar um pedido de ordem  </p>
+
+<h3>PUT</h3>
+<p>"/user/:id" -> Atualizar  um usuario </p>
+<p>"/category/:id" -> Atualizar uma categoria </p>
+<p>"product/:id" -> Atualizar um produto  </p>
+<p>"/order/:id" -> Atualizar uma ordem  </p>
+
+<h3>DELETE</h3>
+<p>"/user/:id" -> Excluir  um usuario </p>
+<p>"/order/:id" -> Excluir uma ordem  </p>
+<p>"/orderItem/:id" -> Excluir uma ordem  </p>
