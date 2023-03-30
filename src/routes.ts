@@ -22,13 +22,14 @@ routes.post('/session', AuthUserController.handle);
 //USER ROUTES
 routes.get('/users', isAuthenticated, UserController.index);
 routes.post('/userDetail', isAuthenticated, UserController.find);
+routes.get('/me/:token', isAuthenticated, UserController.getUserDetail);
 routes.post('/user', isAuthenticated, UserController.store);
 routes.put('/user/:id', isAuthenticated, UserController.update);
 routes.delete('/user/:id', isAuthenticated, UserController.delete);
 //CATEGORY ROUTES
 routes.post('/category', isAuthenticated, CategoryController.store);
 routes.get('/categories', isAuthenticated, CategoryController.index);
-routes.put('/category', isAuthenticated, CategoryController.update);
+routes.put('/category/:id', isAuthenticated, CategoryController.update);
 //PRODUCT ROUTES
 routes.post(
   '/product',
@@ -42,13 +43,13 @@ routes.get(
   isAuthenticated,
   ProductController.findByCategory
 );
-routes.put('product', isAuthenticated, ProductController.update);
+routes.put('product/:id', isAuthenticated, ProductController.update);
 //ORDER ROUTES
 routes.get('/orders', isAuthenticated, OrderController.index);
 routes.get('/ordersFinished', isAuthenticated, OrderController.finishedOrders);
 routes.post('/order', isAuthenticated, OrderController.store);
 routes.post('/order/sendOrder', isAuthenticated, OrderController.sendOrder);
-routes.put('/order', isAuthenticated, OrderController.update);
+routes.put('/order/:id', isAuthenticated, OrderController.update);
 routes.delete('/order/:id', isAuthenticated, OrderController.delete);
 //ORDERITEM ROUTES
 routes.post('/orderItem', isAuthenticated, OrderItemController.store);

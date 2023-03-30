@@ -21,6 +21,7 @@ export function isAuthenticated(
 
   try {
     const { sub } = verify(token, jwtConfig.jwt_secret, {}) as PayLoad;
+
     //Recovery token id and put inside the request
     req.user_id = sub;
 

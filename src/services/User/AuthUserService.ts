@@ -13,13 +13,13 @@ class AuthUserService {
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      throw new Error('Email or password incorrect.  1');
+      throw new Error('Email or password incorrect.');
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error('Email or password incorrect.2');
+      throw new Error('Email or password incorrect.');
     }
 
     const token = sign(
@@ -30,6 +30,9 @@ class AuthUserService {
       jwtConfig.jwt_secret,
       { subject: String(user.id), expiresIn: '30d' }
     );
+
+    user.token = token;
+    await user.save();
 
     return { user: user.show(), token };
   }

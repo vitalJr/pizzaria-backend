@@ -14,6 +14,13 @@ class UserController {
     return res.status(200).json(users);
   }
 
+  async getUserDetail(req: Request, res: Response) {
+    const { token } = req.params;
+    const user = await UserServices.getUserByToken(token);
+    // const user = await UserServices.getUserById(user_id);
+    return res.status(200).json(user.show());
+  }
+
   async find(req: Request, res: Response) {
     const { email } = req.body;
 

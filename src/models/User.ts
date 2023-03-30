@@ -6,6 +6,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
+  token?: string;
   show: Function;
 }
 
@@ -15,6 +16,7 @@ const UserSchema = new Schema(
     name: { type: String, require: true },
     email: { type: String, require: true, unique: true, lowercase: true },
     password: { type: String, require: true },
+    token: { type: String, require: false },
   },
   { timestamps: true }
 );

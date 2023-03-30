@@ -16,13 +16,13 @@ interface UserFindrequest {
 
 class UserService {
   async save({ name, email, password }: UserCreateRequest) {
-    const user = await User.find({ email });
+    const user = await User.findOne({ email });
 
     if (!email) {
       throw new Error('Inform an e-mail');
     }
 
-    if (!user) {
+    if (user) {
       throw new Error('User already exist.');
     }
 
@@ -54,6 +54,16 @@ class UserService {
 
   async getDetailUser(email: string) {
     const user = await User.findOne({ email });
+
+    if (!user) {
+      throw new Error('User not found.');
+    }
+
+    return user.show();
+  }
+
+  async getUserByToken(token: string) {
+    const user = await User.findOne({ token });
 
     if (!user) {
       throw new Error('User not found.');
