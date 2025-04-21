@@ -7,7 +7,10 @@ class DataBase {
 
   init() {
     // mongoose.connect('mongodb://localhost/pizzaria', {});
-    mongoose.connect("mongodb+srv://pizzaria-backend.eckccpe.mongodb.net/", {});
+    mongoose.connect(
+      "mongodb+srv://vitaljr:vital123@pizaaria-backend.udkaydl.mongodb.net/?retryWrites=true&w=majority&appName=pizaaria-backend",
+      {}
+    );
     console.log("DataBase connected");
   }
 }
