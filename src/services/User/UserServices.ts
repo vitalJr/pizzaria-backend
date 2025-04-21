@@ -1,5 +1,5 @@
-import User from '../../models/User';
-import { hash } from 'bcryptjs';
+import User from "../../models/User";
+import { hash } from "bcryptjs";
 
 interface UserCreateRequest {
   id?: string;
@@ -8,22 +8,16 @@ interface UserCreateRequest {
   password: string;
 }
 
-interface UserFindrequest {
-  name?: string;
-  email?: string;
-  id?: string;
-}
-
 class UserService {
   async save({ name, email, password }: UserCreateRequest) {
     const user = await User.findOne({ email });
 
     if (!email) {
-      throw new Error('Inform an e-mail');
+      throw new Error("Inform an e-mail");
     }
 
     if (user) {
-      throw new Error('User already exist.');
+      throw new Error("User already exist.");
     }
 
     const passwordHash = await hash(password, 8);
@@ -41,7 +35,7 @@ class UserService {
     const user = await User.findById(id);
 
     if (!user) {
-      throw new Error('User not found.');
+      throw new Error("User not found.");
     }
 
     if (name) user.name = name;
@@ -56,7 +50,7 @@ class UserService {
     const user = await User.findOne({ email });
 
     if (!user) {
-      throw new Error('User not found.');
+      throw new Error("User not found.");
     }
 
     return user.show();
@@ -66,7 +60,7 @@ class UserService {
     const user = await User.findOne({ token });
 
     if (!user) {
-      throw new Error('User not found.');
+      throw new Error("User not found.");
     }
 
     return user;
@@ -76,7 +70,7 @@ class UserService {
     const user = await User.findById(id);
 
     if (!user) {
-      throw new Error('User not found.');
+      throw new Error("User not found.");
     }
 
     await user.deleteOne();
